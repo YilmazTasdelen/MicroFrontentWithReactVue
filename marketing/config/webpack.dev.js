@@ -8,6 +8,7 @@ with a configuration that we're about to write
 inside this development file. */
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const commonConfig = require('./webpack.common');
 
 
@@ -20,6 +21,13 @@ const devConfig = {
         },
     },
     plugins: [
+        new ModuleFederationPlugin({
+            name: 'marketing',
+            filename: 'remoteEntry.js',
+            exposes: {
+                './MarketingApp': './src/bootstrap',
+            },
+        }),
         new HtmlWebpackPlugin({
             template: './public/index.html',
         }),
