@@ -8,7 +8,7 @@ with a configuration that we're about to write
 inside this development file. */
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+
 const commonConfig = require('./webpack.common');
 
 
