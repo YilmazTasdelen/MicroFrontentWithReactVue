@@ -3,20 +3,22 @@ import React, { useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 export default () => {
-    const ref = useRef(null);
-    const history = useHistory();
+  const ref = useRef(null);
+  const history = useHistory();
 
-    useEffect(() => {
-        mount(ref.current, {
-            onNavigate: ({ pathname: nextPathname }) => {
-                const { pathname } = history.location;
-                if (pathname !== nextPathname) {
-                    history.push(nextPathname);
-                    console.log(nextPathname);
-                }
-            },
-        });
-    })
-    return <div ref={ref} />;
-}
+  useEffect(() => {
+    const { onParentNavigate } = mount(ref.current, {
+      onNavigate: ({ pathname: nextPathname }) => {
+        const { pathname } = history.location;
 
+        if (pathname !== nextPathname) {
+          history.push(nextPathname);
+        }
+      },
+    });
+
+    history.listen(onParentNavigate);
+  }, []);
+
+  return <div ref={ref} />;
+};

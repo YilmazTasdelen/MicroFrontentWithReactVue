@@ -1,17 +1,26 @@
 import React from 'react';
-import { mount } from 'marketing/MarketingApp';
+import { BrowserRouter } from 'react-router-dom';
+import {
+  StylesProvider,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
+
 import MarketingApp from './components/MarketingApp';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import Header from './components/Header';
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: 'co',
+});
 
 export default () => {
-  const history = createBrowserHistory();
-  return <div>
-    <div>Hi there </div>
-    <hr />
-    <Router history={history}>
-      <Route path="/" component={MarketingApp} />
-      {/*  <MarketingApp /> */}
-    </Router>
-  </div>;
+  return (
+    <BrowserRouter>
+      <StylesProvider generateClassName={generateClassName}>
+        <div>
+          <Header />
+          <MarketingApp />
+        </div>
+      </StylesProvider>
+    </BrowserRouter>
+  );
 };
