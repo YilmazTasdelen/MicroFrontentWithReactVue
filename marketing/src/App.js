@@ -11,10 +11,10 @@ export default ({ history }) => {
       <StylesProvider>
         <Router history={history}>
           {/* for react wich router meets the needs Router (router without history ) or Browser history  */}
-          <Switch>
-            <Route exact path="/pricing" component={Pricing} />
-            <Route path="/" component={Landing} />
-          </Switch>
+
+          <Route exact path="/pricing" component={Pricing} />
+          <Route path="/" component={Landing} />
+
         </Router>
       </StylesProvider>
     </div>

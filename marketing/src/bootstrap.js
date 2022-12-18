@@ -7,7 +7,9 @@ import App from './App';
 const mount = (el, { onNavigate }) => {
     const history = createMemoryHistory();
 
-    history.listen(onNavigate);
+    if (onNavigate)
+        history.listen(onNavigate);
+
     ReactDOM.render(<App history={history} />, el);
 };
 
@@ -23,4 +25,4 @@ if (process.env.NODE_ENV === 'development') {
 
 // We are running through container
 // and we should export the mount function
-export { mount };
+export { mount,{ } };

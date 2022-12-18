@@ -6,7 +6,7 @@ allow us to take all the config that we just wrote out
 inside that common file and merge it together
 with a configuration that we're about to write
 inside this development file. */
-
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const commonConfig = require('./webpack.common');

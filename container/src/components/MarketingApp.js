@@ -1,15 +1,20 @@
 import { mount } from 'marketing/MarketingApp';
 import React, { useRef, useEffect } from 'react';
-
+import { useHistory } from 'react-router-dom';
 
 export default () => {
     const ref = useRef(null);
+    const history = useHistory();
 
     useEffect(() => {
         mount(ref.current, {
-            onNavigate: () => {
-                console.log('The container noticed navigation in marketing')
-            }
+            onNavigate: ({ pathname: nextPathname }) => {
+                const { pathname } = history.location;
+                if (pathname !== nextPathname) {
+                    history.push(nextPathname);
+                    console.log(nextPathname);
+                }
+            },
         });
     })
     return <div ref={ref} />;
